@@ -7,11 +7,13 @@ const {
 } = require("../controllers/post.control.js");
 const { verifyUser } = require("../utils/verifyUser.js");
 
+router.use(verifyUser);
+
 router
-  .post("/create", verifyUser, createPost)
-  .get("/get-posts", verifyUser, getPosts)
-  .put("/update/:postId/:userId", verifyUser, updatePost)
-  .delete("/delete/:postId/:userId", verifyUser, deletePost)
-  .get("/", verifyUser, getPosts);
+  .post("/create", createPost)
+  .get("/get-posts", getPosts)
+  .put("/update/:postId/:userId", updatePost)
+  .delete("/delete/:postId/:userId", deletePost)
+  .get("/", getPosts);
 
 module.exports = router;

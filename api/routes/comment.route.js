@@ -8,11 +8,13 @@ const {
 } = require("../controllers/comment.control.js");
 const { verifyUser } = require("../utils/verifyUser.js");
 
+router.use(verifyUser);
+
 router
-  .post("/create", verifyUser, createComment)
+  .post("/create", createComment)
   .get("/get-comments/:postId", getComments)
-  .put("/edit-comment/:commentId", verifyUser, editComment)
-  .delete("/delete-comment/:commentId", verifyUser, deleteComment)
-  .put("/updateLike/:commentId", verifyUser, updateCommentLike);
+  .put("/edit-comment/:commentId", editComment)
+  .delete("/delete-comment/:commentId", deleteComment)
+  .put("/updateLike/:commentId", updateCommentLike);
 
 module.exports = router;
